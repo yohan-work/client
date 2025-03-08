@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+}
+
+h1 {
+  color: green;
+  background: yellow;
+}
+
+h3 {
+  color: #fff;
+  background: #000;
+}
+
+button,
+button + span {
+  font-size: 20px;
+}
