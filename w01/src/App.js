@@ -1,22 +1,16 @@
 import "./App.css";
-import Example1 from "./components/Example1";
-import Example2 from "./components/Example2";
-import Counter1 from "./components/Counter1";
-import Counter2 from "./components/Counter2";
-import Say from "./components/Say";
-import Event1 from "./components/Event1";
-import Event2 from "./components/Event2";
+import Join from "./components/week03/Join";
+import Product from "./components/week03/Product";
+import Fruits from "./components/week03/Fruits";
+import Foods from "./components/week03/Foods";
 const App = () => {
   return (
     <div className="App">
-      <h1>week02</h1>
-      {/* <Example1 name="react" address="seoul" />
-      <Example2 name="react2" address="incheon" /> */}
-      {/* <Counter1 />
-      <Counter2 />
-      <Say /> */}
-      <Event1 />
-      <Event2 />
+      <h1>week03</h1>
+      <Foods />
+      <Join />
+      <Product />
+      <Fruits />
     </div>
   );
 };
