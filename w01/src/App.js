@@ -1,17 +1,20 @@
 import "./App.css";
-import Join from "./components/week03/Join";
-import Product from "./components/week03/Product";
-import Fruits from "./components/week03/Fruits";
-import Foods from "./components/week03/Foods";
+import Students from "./components/week04/Students";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col } from "react-bootstrap";
 const App = () => {
   return (
-    <div className="App">
-      <h1>week03</h1>
-      <Foods />
-      <Join />
-      <Product />
-      <Fruits />
-    </div>
+    <Container>
+      <h1 className="text-center">week04</h1>
+      <Row>
+        <Col lg={6}>
+          <Students />
+        </Col>
+        <Col lg={6}>
+          <Students />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
