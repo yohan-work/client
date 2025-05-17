@@ -8,10 +8,9 @@ const Menubar = () => {
   const location = useLocation();
   const { pathname } = location;
   const basename = process.env.PUBLIC_URL;
-  console.log(basename);
   return (
     <>
-      <Navbar expand="lg" bg="primary" data-bs-theme="dark">
+      <Navbar expand="lg" bg="dark" data-bs-theme="dark">
         <Container fluid>
           <Navbar.Brand href={`${basename}/`}>React</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />

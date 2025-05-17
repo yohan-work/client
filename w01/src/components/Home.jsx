@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import BookPage from "./BookPage";
 
 const Home = () => {
   const [documents, setDocuments] = useState([]);
@@ -41,6 +42,7 @@ const Home = () => {
       alert("검색어를 입력하세요");
       return;
     }
+    setPage(1);
     callAPI();
   };
 
@@ -68,7 +70,7 @@ const Home = () => {
           <Col key={doc.isbn} className="mb-4" lg={2} md={4} xs={6}>
             <Card>
               <Card.Body>
-                <img src={doc.thumbnail} alt="" width="100%" />
+                <BookPage book={doc} />
               </Card.Body>
               <Card.Footer>
                 <div className="text-truncate">{doc.title}</div>
