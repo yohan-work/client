@@ -14,6 +14,7 @@ import { Table } from "react-bootstrap";
 const ListPage = () => {
   const db = getFirestore(app);
   const [page, setPage] = useState(1);
+  const [last, setLast] = useState(0);
   const email = sessionStorage.getItem("email");
   const navi = useNavigate();
   const [posts, setPosts] = useState([]);
@@ -39,6 +40,7 @@ const ListPage = () => {
         no++;
       });
       setPosts(rows);
+      setLast(Math.ceil(no / 5));
       console.log(rows);
       setLoading(false);
     });
@@ -97,15 +99,17 @@ const ListPage = () => {
           ))}
         </tbody>
       </Table>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center my-3">
         <Button
           size="sm"
           onClick={() => setPage(page - 1)}
           disabled={page === 1}
-          className="mx-2"
         >
           Prev
         </Button>
+        <span className="mx-2">
+          {page} / {last}
+        </span>
         <Button
           size="sm"
           onClick={() => setPage(page + 1)}
