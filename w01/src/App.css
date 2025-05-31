@@ -32,4 +32,19 @@ span {
   cursor: pointer;
   font-size: 16px;
 }
+.heart {
+  color: red;
+  cursor: pointer;
+  position: absolute;
+  bottom: 87px;
+  right: 23px;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
 /* e : // etc */

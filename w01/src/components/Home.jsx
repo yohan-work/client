@@ -4,13 +4,16 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Row, Col, Card, Form, InputGroup } from "react-bootstrap";
 import { BsCart4 } from "react-icons/bs";
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { app } from "../firebase";
-import { getDatabase, ref, set, get } from "firebase/database";
+import { getDatabase, ref, set, get, onValue, remove } from "firebase/database";
 import moment from "moment";
 
 const Home = () => {
   const db = getDatabase(app);
   const uid = sessionStorage.getItem("uid");
+  const [heart, setHeart] = useState([]);
 
   const navi = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -69,6 +72,41 @@ const Home = () => {
     }
   };
 
+  // heart
+  const onClickRegHeart = (book) => {
+    if (uid) {
+      alert("Save Heart");
+      set(ref(db, `heart/${uid}/${book.isbn}`), book);
+    } else {
+      alert("Login first");
+      navi("/login");
+    }
+  };
+
+  const onClickHeart = (book) => {
+    remove(ref(db, `heart/${uid}/${book.isbn}`));
+    alert("Remove Heart");
+  };
+
+  // Like check list in current email
+  const checkHeart = () => {
+    setLoading(true);
+    onValue(ref(db, `heart/${uid}`), (snapshot) => {
+      const rows = [];
+      snapshot.forEach((row) => {
+        rows.push(row.val().isbn);
+      });
+      console.log(rows);
+      setHeart(rows);
+      setLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    checkHeart();
+  }, []);
+
+  // loading
   if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
@@ -104,9 +142,16 @@ const Home = () => {
             <Card>
               <Card.Body>
                 <BookPage book={doc} />
+                <div className="heart text-end">
+                  {heart.includes(doc.isbn) ? (
+                    <FaHeart onClick={() => onClickHeart(doc)} />
+                  ) : (
+                    <FaRegHeart onClick={() => onClickRegHeart(doc)} />
+                  )}
+                </div>
               </Card.Body>
               <Card.Footer>
-                <div className="text-truncate">{doc.title}</div>
+                <div className="text-truncate">{doc.title} </div>
                 <Row>
                   <Col>{doc.sale_price}원</Col>
                   <Col className="text-end cart">

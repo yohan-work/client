@@ -44,6 +44,12 @@ const Menubar = () => {
                   Cart
                 </Nav.Link>
               )}
+              <Nav.Link
+                href={`${basename}/post`}
+                active={pathname.startsWith("/post")}
+              >
+                Board
+              </Nav.Link>
             </Nav>
             <Nav>
               {email ? (
